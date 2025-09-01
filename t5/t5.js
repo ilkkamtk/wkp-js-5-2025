@@ -34,6 +34,7 @@ function openModal(restaurant, dailyMenu) {
     </thead>
     <tbody>`;
   // silmukalla dailyMenu läpi, lisää html stringiin
+  console.log(dailyMenu);
   modalContent.insertAdjacentHTML('beforeend', html);
 }
 
