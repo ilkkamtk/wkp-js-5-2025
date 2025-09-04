@@ -1,9 +1,8 @@
 'use strict';
 
 import {restaurantModal, restaurantRow} from './components.js';
-import fetchData from './fetchData.js';
-
-const apiURL = 'https://media1.edu.metropolia.fi/restaurant/api/v1';
+import fetchData from './utils/fetchData.js';
+import {apiURL} from './utils/variables.js';
 
 const modal = document.querySelector('#modal');
 const modalContent = document.querySelector('#modal-content');
