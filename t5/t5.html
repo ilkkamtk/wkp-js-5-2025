@@ -10,20 +10,29 @@
 </head>
 
 <body>
-  <h1>Restaurants</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Company</th>
-      </tr>
-    </thead>
-    <!-- add restaurants here -->
-    <tbody id="target">
+  <main>
+    <h1>Restaurants</h1>
+    <section id="filter-by-company">
+      <button id="reset">Reset</button>
+      <button id="sodexo">Sodexo</button>
+      <button id="compass">Compass</button>
+    </section>
+    <section id="restaurants">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <!-- add restaurants here -->
+        <tbody id="target">
 
-    </tbody>
-  </table>
+        </tbody>
+      </table>
+    </section>
+  </main>
   <!-- modal -->
   <dialog id="modal">
     <header>

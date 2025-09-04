@@ -7,6 +7,10 @@ import {apiURL} from './utils/variables.js';
 const modal = document.querySelector('#modal');
 const modalContent = document.querySelector('#modal-content');
 const closeButtons = document.querySelectorAll('.close-button');
+const resetButton = document.querySelector('#reset');
+const sodexoButton = document.querySelector('#sodexo');
+const compassButton = document.querySelector('#compass');
+const target = document.querySelector('#target');
 
 const highlight = (evt) => {
   document.querySelector('.highlight')?.classList.remove('highlight');
@@ -27,10 +31,14 @@ for (const closeButton of closeButtons) {
   });
 }
 
-const teeRavintolaLista = async () => {
-  const restaurants = await fetchData(apiURL + '/restaurants');
+const haeRavintolat = async () => {
+  return await fetchData(apiURL + '/restaurants');
+};
 
+const teeRavintolaLista = async (restaurants) => {
   restaurants.sort((a, b) => a.name.localeCompare(b.name));
+
+  target.innerHTML = '';
 
   restaurants.forEach((restaurant) => {
     const rivi = restaurantRow(restaurant);
@@ -41,9 +49,16 @@ const teeRavintolaLista = async () => {
       );
       openModal(restaurant, dailyMenu);
     });
-
-    document.querySelector('#target').appendChild(rivi);
+    target.appendChild(rivi);
   });
 };
 
-teeRavintolaLista();
+const restaurants = await haeRavintolat();
+teeRavintolaLista(restaurants);
+
+sodexoButton.addEventListener('click', () => {
+  const filteredRestaurants = restaurants.filter(
+    (restaurant) => restaurant.company === 'Sodexo'
+  );
+  teeRavintolaLista(filteredRestaurants);
+});
