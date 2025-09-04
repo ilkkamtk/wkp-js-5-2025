@@ -33,7 +33,7 @@ const teeRavintolaLista = async () => {
 
   restaurants.sort((a, b) => a.name.localeCompare(b.name));
 
-  for (const restaurant of restaurants) {
+  restaurants.forEach((restaurant) => {
     const rivi = restaurantRow(restaurant);
     rivi.addEventListener('click', highlight);
     rivi.addEventListener('click', async () => {
@@ -44,7 +44,7 @@ const teeRavintolaLista = async () => {
     });
 
     document.querySelector('#target').appendChild(rivi);
-  }
+  });
 };
 
 teeRavintolaLista();

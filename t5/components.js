@@ -42,16 +42,32 @@ const restaurantModal = (restaurant, menu) => {
       <tbody>`;
   // silmukalla menu läpi, lisää html stringiin
   console.log(menu.courses);
-  for (const course of menu.courses) {
-    console.log(course);
+  menu.courses.forEach((course) => {
+    if (typeof course.diets === 'string') {
+      course.diets = course.diets.split(',');
+    }
     html += `
       <tr>
         <td>${course.name}</td>
         <td>${course.price}</td>
-        <td>${course.diets}</td>
+        <td>${course.diets
+          ?.map((diet) => {
+            switch (diet) {
+              case 'Veg':
+                return '&#129382;';
+              case 'G':
+                return '&#127806;';
+              case 'A':
+                return '🐻';
+              default:
+                return '&#128286;';
+            }
+          })
+          .join('&nbsp;')}</td>
       </tr>
     `;
-  }
+  });
+
   html += `
     </tbody>
   </table>
