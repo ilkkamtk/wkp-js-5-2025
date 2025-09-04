@@ -46,24 +46,35 @@ const restaurantModal = (restaurant, menu) => {
     if (typeof course.diets === 'string') {
       course.diets = course.diets.split(',');
     }
+
+    const filteredDiets = course.diets?.filter(
+      (diet) => diet !== '*' && diet !== 'A'
+    );
+    console.log(filteredDiets);
+
+    const dietsWithEmojis = filteredDiets?.map((diet) => {
+      switch (diet) {
+        case 'Veg':
+          return '&#129382;';
+        case 'G':
+          return '&#127806;';
+        case 'A':
+          return '🐻';
+        default:
+          return '&#128286;';
+      }
+    });
+
+    const dietString = dietsWithEmojis?.reduce(
+      (accString, diet) => accString + diet + '&nbsp;',
+      ''
+    );
+
     html += `
       <tr>
         <td>${course.name}</td>
         <td>${course.price}</td>
-        <td>${course.diets
-          ?.map((diet) => {
-            switch (diet) {
-              case 'Veg':
-                return '&#129382;';
-              case 'G':
-                return '&#127806;';
-              case 'A':
-                return '🐻';
-              default:
-                return '&#128286;';
-            }
-          })
-          .join('&nbsp;')}</td>
+        <td>${dietString}</td>
       </tr>
     `;
   });
